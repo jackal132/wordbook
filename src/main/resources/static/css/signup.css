@@ -1,0 +1,81 @@
+#signUpFrm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    height: 500px;
+    border: 1px solid #A841DB;
+    border-radius: 5px;
+    background-color: white;
+}
+
+#signUpFrm > h1 {
+    color: #A30FE2;
+    margin-bottom: 40px;
+}
+
+#signUpFrm > div {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+
+#signUpFrm > div > label {
+    width : 100px;
+    font-weight: bold;
+    color: #A30FE2;
+}
+
+#signUpFrm > div:not(#idWrap) > input {
+    width : 200px;
+    border: 1px solid rgb(248, 207, 248);
+    padding: 4px;
+    border-radius: 4px;
+}
+
+#idWrap > input {
+    width : 120px;
+    border: 1px solid rgb(248, 207, 248);
+    padding: 4px;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+#dupIdChkBtn {
+    border: none;
+    padding: 5px;
+    font-weight: bold;
+    background-color: #C15AF4;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#dupIdChkBtn:hover {
+    background-color: #A30FE2;
+}
+
+#signUpFrm > div > input:focus {
+    outline: none;
+}
+
+#signUpBtnWrap {
+    width: 308px;
+    display: flex;
+    justify-content: right;
+}
+
+#signUpBtn {
+    margin-top: 5px;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    background-color: #C15AF4;
+    color: white;
+    cursor: pointer;
+}
+
+#signUpBtn:hover {
+    background-color: #A30FE2;
+}

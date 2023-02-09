@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/common :: head('SignIn', 'login.css', 'login.js')"></head>
+<script th:if="${not #strings.isEmpty(msg)}" th:inline="javascript">
+/*<![CDATA[*/
+    let message = /*[[${msg}]]*/ 'default';
+    alert(message);
+/*]]>*/
+</script>
+<body>
+    <div id="container">
+        <form id="frm" th:action="@{/login}" method="post" th:object="${member}" onsubmit="return fn_chkLoginFrm();">
+            <div id="loginFrm">
+                <h1>Sign In</h1>
+                <div id="idWrap">
+                    <label for="input_id">ID</label>
+                    <input type="text" name="id" id="input_id" placeholder="ID">
+                </div>
+                <div id="passwordWrap">
+                    <label for="input_password">PASSWORD</label>
+                    <input type="password" name="password" id="input_password" placeholder="PASSWORD">
+                </div>
+                <button type="submit" id="loginBtn">Sign In</button>
+                <a th:href="@{/member/signup}" id="signUpLnk">Sign Up</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
