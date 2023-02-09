@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="acc.wordbook.word.mapper.WrongWordMapper">
+    <select id="getWrongWordList" parameterType="Long" resultType="Word">
+        SELECT W.*
+          FROM wrong_word WR
+         INNER JOIN words W
+            ON WR.word_pk = W.word_pk
+           AND WR.member_pk = W.member_pk
+         WHERE WR.member_pk = #{member_pk}
+         ORDER BY WR.reg_dt DESC LIMIT 10
+    </select>
+</mapper>

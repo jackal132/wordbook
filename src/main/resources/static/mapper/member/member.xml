@@ -11,4 +11,27 @@
          WHERE id = #{id}
     </select>
 
+    <select id="findMember" resultType="Member">
+        SELECT *
+        FROM members
+        WHERE id = #{id}
+    </select>
+
+    <insert id="saveMember" parameterType="acc.wordbook.member.dto.Member">
+        INSERT INTO
+            members
+            (
+            id,
+            name,
+            password,
+            reg_dt
+            )
+        VALUES (
+            #{id},
+            #{name},
+            #{password},
+            now()
+            )
+    </insert>
+
 </mapper>

@@ -14,6 +14,8 @@ public class WebConfig implements WebMvcConfigurer {
                 .order(1) // 인터셉터 체인 순서
                 .addPathPatterns("/**") // 모든 requestURL에 적용
                 .excludePathPatterns("/login" // 제외할 list
+                    , "/member/signup"
+                    , "/api/**/**"
                     , "/logout"
                     , "/css/**"
                     , "/js/**"

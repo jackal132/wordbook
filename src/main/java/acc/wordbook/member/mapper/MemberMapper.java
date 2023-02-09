@@ -7,5 +7,9 @@ import java.util.List;
 
 @Mapper
 public interface MemberMapper {
-    Member findById(Member member);
+    Member findMember(Member member);
+
+    Member findById(String id);
+
+    void saveMember(Member member);
 }

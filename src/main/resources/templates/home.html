@@ -13,88 +13,50 @@
                             New
                             <label for="layerPopup" id="closeLabel">X</label>
                         </h2>
-                        <div id="layer_content">
-                            <div>
-                                <label for="word">Word</label>
-                                <input type="text" name="word" id="word" maxlength="50">
-                            </div>
+                        <form id="frm1" th:action="@{/word/register}" method="post" th:object="${word}" onsubmit="return fn_chkWordRegisterFrm();">
+                            <div id="layer_content">
+                                    <div>
+                                        <label for="word">Word</label>
+                                        <input type="text" name="word" id="word" maxlength="50">
+                                    </div>
 
-                            <div>
-                                <label for="word">Meaning</label>
-                                <input type="text" name="meaning" id="meaning" maxlength="50">
-                            </div>
+                                    <div>
+                                        <label for="meaning">Meaning</label>
+                                        <input type="text" name="meaning" id="meaning" maxlength="50">
+                                    </div>
 
-                            <button type="button" id="wordSaveBtn">Save</button>
+                                    <button type="submit" id="wordSaveBtn">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <span th:text="${session.loginMember.name}"></span>
+                <a href="/logout" id="logout">Logout</a>
+
+            </div>
+            <form id="frm2" th:action="@{/word/save}" method="post" th:object="${answer}">
+                <input type="hidden" name="mode" id="mode" value=""/>
+                <div id="center">
+                    <ul id="tabs">
+                        <li class="on"><span>Wrong</span></li>
+                        <li><span>Question</span></li>
+                    </ul>
+
+                    <div id="content">
+                        <div th:each="word : ${wordList}">
+                            <label th:for="${'answer' + wordStat.index}" th:text="${wordStat.index  + '. ' + word.word}"></label>
+                            <input type="text" name="answer" maxlength="50">
+                            <input type="hidden" name="hiddenMeaning" th:value="${word.meaning}">
+                            <input type="hidden" name="word_pk" th:value="${word.word_pk}">
                         </div>
                     </div>
-                </div>
-
-                <span>홍길동</span>
-                <a href="#" id="logout">Logout</a>
-
-            </div>
-            <div id="center">
-                <ul id="tabs">
-                    <li class="on"><span>Wrong</span></li>
-                    <li><span>Question</span></li>
-                </ul>
-
-                <div id="content">
-                    <div>
-                        <label for="answer1">1. deny</label>
-                        <input type="text" name="answer1" id="answer1" maxlength="50">
-                    </div>
-
-                    <div>
-                        <label for="answer2">2. question</label>
-                        <input type="text" name="answer2" id="answer2" maxlength="50">
-                    </div>
-
-                    <div>
-                        <label for="answer3">3. deny</label>
-                        <input type="text" name="answer3" id="answer3" maxlength="50">
-                    </div>
-
-                    <div>
-                        <label for="answer4">4. question</label>
-                        <input type="text" name="answer4" id="answer4" maxlength="50">
-                    </div>
-
-                    <div>
-                        <label for="answer5">5. deny</label>
-                        <input type="text" name="answer5" id="answer5" maxlength="50">
-                    </div>
-
-                    <div>
-                        <label for="answer6">6. question</label>
-                        <input type="text" name="answer6" id="answer6" maxlength="50">
-                    </div>
-
-                    <div>
-                        <label for="answer7">7. deny</label>
-                        <input type="text" name="answer7" id="answer7" maxlength="50">
-                    </div>
-
-                    <div>
-                        <label for="answer8">8. question</label>
-                        <input type="text" name="answer8" id="answer8" maxlength="50">
-                    </div>
-
-                    <div>
-                        <label for="answer9">9. deny</label>
-                        <input type="text" name="answer9" id="answer9" maxlength="50">
-                    </div>
-
-                    <div>
-                        <label for="answer10">10. question</label>
-                        <input type="text" name="answer10" id="answer10" maxlength="50">
-                    </div>
 
                 </div>
-            </div>
-            <div id="footer">
-                <button type="submit" name="saveBtn" id="saveBtn">Save</button>
-            </div>
+                <div id="footer">
+                    <button type="submit" name="saveBtn" id="saveBtn">Save</button>
+                </div>
+            </form>
         </div>
     </div>
 </body>

@@ -2,6 +2,37 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/common :: head('SignUp', 'signup.css', 'signup.js')"></head>
 <body>
+    <div id="container">
+        <form id="frm" th:action="@{/member/signup}" method="post" th:object="${member}" onsubmit="return fn_chkSignUpFrm();">
+            <input type="hidden" id="dupChk" name="dupChk" value="">
+            <div id="signUpFrm">
+                <h1>Sign Up</h1>
+                <div id="idWrap">
+                    <label for="id">ID</label>
+                    <input type="text" id="id" name="id" onkeyup="fn_dupInit()">
+                    <button type="button" id="dupIdChkBtn" onclick="fn_chkDupId()">ID CHECK</button>
+                </div>
 
+                <div>
+                    <label for="password">PASSWORD</label>
+                    <input type="password" id="password" name="password">
+                </div>
+
+                <div>
+                    <label for="confirm">CONFIRM</label>
+                    <input type="password" id="confirm" name="confirm">
+                </div>
+
+                <div>
+                    <label for="name">NAME</label>
+                    <input type="text" id="name" name="name">
+                </div>
+
+                <div id="signUpBtnWrap">
+                    <button type="submit" id="signUpBtn">SignUp</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
