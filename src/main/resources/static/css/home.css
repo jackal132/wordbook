@@ -17,6 +17,7 @@
     justify-content: flex-end;
     margin-top: 20px;
     align-items: center;
+    margin-right: 80px;
 }
 
 #logout {
@@ -219,6 +220,17 @@
     height: 30px;
     width: 50px;
     border-radius: 4px;
+}
+
+#resetBtn {
+    border: none;
+    background-color: #C15AF4;
+    color: white;
+    font-weight: bold;
+    height: 37px;
+    width: 50px;
+    border-radius: 4px;
+    margin-right: 5px;
 }
 
 /*

@@ -3,6 +3,7 @@ package acc.wordbook.home.controller;
 import acc.wordbook.member.dto.Member;
 import acc.wordbook.member.mapper.MemberMapper;
 import acc.wordbook.word.dto.Word;
+import acc.wordbook.word.mapper.WordMapper;
 import acc.wordbook.word.mapper.WrongWordMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,9 @@ public class HomeController {
 
     @Autowired
     private WrongWordMapper wrongWordMapper;
+
+    @Autowired
+    private WordMapper wordMapper;
 
     @GetMapping("/login")
     public String loginPage(Model model){
@@ -65,6 +69,16 @@ public class HomeController {
         Member loginMember = (Member) request.getSession().getAttribute("loginMember");
         List<Word> wrongWordList = wrongWordMapper.getWrongWordList(loginMember.getMember_pk());
         model.addAttribute("wordList",wrongWordList);
+
+        return "/home";
+    }
+
+    @GetMapping("/reset")
+    public String reset(HttpServletRequest request){
+        Member loginMember = (Member) request.getSession().getAttribute("loginMember");
+
+        wrongWordMapper.resetWrongWord(loginMember.getMember_pk());
+        wordMapper.resetWord(loginMember.getMember_pk());
 
         return "/home";
     }

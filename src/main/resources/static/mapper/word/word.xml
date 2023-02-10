@@ -40,4 +40,19 @@
             )
     </insert>
 
+    <update id="updateUseYn" parameterType="java.util.List">
+        UPDATE words
+           SET use_yn = 1
+         WHERE word_pk IN
+        <foreach collection="pkList" item="pk" open="(" close=")" separator=",">
+            #{pk.value}
+        </foreach>
+    </update>
+
+    <update id="resetWord" parameterType="Long">
+        UPDATE words
+           SET use_yn = 0
+         WHERE member_pk = #{member_pk}
+    </update>
+
 </mapper>

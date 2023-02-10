@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 @RequestMapping("/word")
@@ -44,9 +45,60 @@ public class WordController {
         Member member = (Member) request.getSession().getAttribute("loginMember");
         long memberPk = member.getMember_pk();
 
-        String wordPk[] = request.getParameterValues("word_pk");
-        String answer[] = request.getParameterValues("answer");
+        String wordPkArray[] = request.getParameterValues("word_pk");
+        String answerArray[] = request.getParameterValues("answer");
+        String meaningArray[] = request.getParameterValues("hiddenMeaning");
 
+        List<Long> rightList = new ArrayList<>();
+        List<Long> wrongList = new ArrayList<>();
+
+        int maxLen = wordPkArray.length;
+        for(int i = 0; i < maxLen; i++){
+
+            String word[] = meaningArray[i].split(",");
+            String answer[] = answerArray[i].split(",");
+            Long wordPk = Long.parseLong(wordPkArray[i]);
+            boolean isRight = false;
+            /*
+                나눈 단어 의미중에 하나라도 맞았다면 right 하나도 없으면 wrong
+            */
+            for(int j = 0; j  < word.length; j++){
+                for(int k = 0; k < answer.length; k++){
+                    if(word[j].equals(answer[k])) {
+                        isRight = true;
+                    }
+                }
+            }
+
+            if(isRight){
+                rightList.add(wordPk);
+            } else {
+                wrongList.add(wordPk);
+            }
+        }
+
+        /*
+            - wrong
+            다시 맞춰야되는 문제인경우
+            맞췄으면 wrong 삭제
+            틀렸으면 놔둠
+
+            - question
+            맞추면 use_yn > 1로 변경
+            틀리면 wrong 등록
+        */
+        if("question".equals(mode)){
+            wordMapper.updateUseYn(rightList);
+            for(int i = 0; i < wrongList.size(); i++){
+                long pk = (Long) wrongList.get(i);
+                wrongWordMapper.saveWrongWord(pk, memberPk);
+            }
+        } else {
+            for(int i = 0; i < rightList.size(); i++){
+                long pk = (Long) rightList.get(i);
+                wrongWordMapper.deleteWrongWord(pk, memberPk);
+            }
+        }
 
         return "redirect:/home";
     }

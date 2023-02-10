@@ -14,4 +14,8 @@ public interface WordMapper {
     void saveWord(Word word);
 
     List<Word> getQuestionList(@RequestParam("member_pk") long member_pk);
+
+    void updateUseYn(List<Long> pkList);
+
+    void resetWord(@RequestParam("member_pk") long member_pk);
 }

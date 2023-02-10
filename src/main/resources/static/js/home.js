@@ -58,3 +58,7 @@ function fn_chkWordRegisterFrm(){
     }
 }
 
+function fn_reset(){
+    location.href="/reset";
+}
+

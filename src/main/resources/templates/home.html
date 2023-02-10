@@ -31,6 +31,7 @@
                     </div>
                 </div>
 
+                <button type="button" id="resetBtn" onclick="fn_reset()">Reset</button>
                 <span th:text="${session.loginMember.name}"></span>
                 <a href="/logout" id="logout">Logout</a>
 
@@ -45,7 +46,7 @@
 
                     <div id="content">
                         <div th:each="word : ${wordList}">
-                            <label th:for="${'answer' + wordStat.index}" th:text="${wordStat.index  + '. ' + word.word}"></label>
+                            <label th:for="${'answer' + wordStat.index}" th:text="${(wordStat.index+1)  + '. ' + word.word}"></label>
                             <input type="text" name="answer" maxlength="50">
                             <input type="hidden" name="hiddenMeaning" th:value="${word.meaning}">
                             <input type="hidden" name="word_pk" th:value="${word.word_pk}">
