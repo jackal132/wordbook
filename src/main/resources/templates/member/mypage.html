@@ -4,7 +4,7 @@
 <body>
 <div id="container">
     <div id="main">
-        <div id="homeLink"><a href="/">Word book</a></div>
+        <div id="homeLink"><a href="/home">Word book</a></div>
         <form id="frm" th:action="@{|/member/${session.loginMember.member_pk}|}" method="post" th:object="${pageVO}" onsubmit="return fn_chkSearchFrm();">
             <div id="searchFrm">
                 <select name="searchField" id="searchField">
