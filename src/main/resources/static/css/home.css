@@ -24,7 +24,7 @@
     text-decoration: none;
     margin-right: 10px;
     font-weight: bold;
-    color: #A30FE2;
+    color: #C15AF4;
 }
 
 #top > span {
@@ -32,6 +32,7 @@
     font-weight: 600;
     margin-right: 10px;
     color:#C15AF4;
+    cursor:pointer;
 }
 
 #center {
@@ -138,6 +139,7 @@
     text-align: center;
     border-radius: 4px;
     margin-right: 5px;
+    cursor:pointer;
 }
 
 #layer_bg {
@@ -183,6 +185,7 @@
     border-radius: 50%;
     background-color: #C15AF4;
     color: white;
+    cursor:pointer;
 }
 
 #layer_content {
@@ -198,7 +201,7 @@
 #layer_content > div > label {
     width:100px;
     font-weight: bold;
-    color: #A30FE2;
+    color: #C15AF4;
 }
 
 #layer_content > div > input {
@@ -231,6 +234,7 @@
     width: 50px;
     border-radius: 4px;
     margin-right: 5px;
+    cursor:pointer;
 }
 
 /*

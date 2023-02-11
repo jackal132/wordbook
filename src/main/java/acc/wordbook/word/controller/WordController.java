@@ -1,14 +1,15 @@
 package acc.wordbook.word.controller;
 
 import acc.wordbook.member.dto.Member;
-import acc.wordbook.word.dto.Answer;
-import acc.wordbook.word.dto.AnswerList;
 import acc.wordbook.word.dto.Word;
 import acc.wordbook.word.mapper.WordMapper;
 import acc.wordbook.word.mapper.WrongWordMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -101,5 +102,17 @@ public class WordController {
         }
 
         return "redirect:/home";
+    }
+
+    @RequestMapping("/modify")
+    public String modify(Word word, HttpServletRequest request){
+
+        Member member = (Member) request.getSession().getAttribute("loginMember");
+        long memberPk = member.getMember_pk();
+
+        word.setMember_pk(memberPk);
+        wordMapper.updateWord(word);
+
+        return "redirect:/member/"+memberPk;
     }
 }

@@ -32,7 +32,7 @@
                 </div>
 
                 <button type="button" id="resetBtn" onclick="fn_reset()">Reset</button>
-                <span th:text="${session.loginMember.name}"></span>
+                <span th:text="${session.loginMember.name}" th:onclick="fn_myPage([[${session.loginMember.member_pk}]])"></span>
                 <a href="/logout" id="logout">Logout</a>
 
             </div>

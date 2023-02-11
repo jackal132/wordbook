@@ -62,3 +62,6 @@ function fn_reset(){
     location.href="/reset";
 }
 
+function fn_myPage(id){
+    location.href="/member/"+ id;
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/common :: head('MyPage', 'mypage.css', 'mypage.js')"></head>
+<body>
+<div id="container">
+    <div id="main">
+        <div id="homeLink"><a href="/">Word book</a></div>
+        <form id="frm" th:action="@{|/member/${session.loginMember.member_pk}|}" method="post" th:object="${pageVO}" onsubmit="return fn_chkSearchFrm();">
+            <div id="searchFrm">
+                <select name="searchField" id="searchField">
+                    <option value="word" th:selected="${pageCreate.pageVO.searchField} == ${'word'}">단어</option>
+                    <option value="meaning" th:selected="${pageCreate.pageVO.searchField} == ${'meaning'}">뜻</option>
+                </select>
+                <input type="text" name="keyword" id="keyword" th:value="${pageCreate.pageVO.keyword}">
+                <button type="submit" id="searchBtn">검색</button>
+            </div>
+        </form>
+        <div id="fixTableWrap">
+            <table id="tb_myWordList">
+                <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>단어</th>
+                    <th>뜻</th>
+                    <th>출제</th>
+                    <th>암기</th>
+                    <th>수정</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="word : ${myWordLsit}">
+                        <td th:text="${pageCreate.totalCount - ((pageCreate.pageVO.pageNum - 1) * pageCreate.pageVO.countPerPage + wordStat.index)}"></td>
+                        <td><input type="text" class="tb_input" name="word" th:id="'word'+${wordStat.index}" th:value="${word.word}"></td>
+                        <td><input type="text" class="tb_input" name="meaning" th:id="'meaning'+${wordStat.index}" th:value="${word.meaning}"></td>
+                        <td><span class="blue" th:text="${word.question_yn}"></span></td>
+                        <td><span class="blue" th:text="${word.memorize_yn}"></span></td>
+                        <td><button class="modifyBtn" th:onclick="|fn_modify(${word.word_pk},${wordStat.index})|">modify</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="paging">
+            <ul>
+                <li th:if="${pageCreate.prev}"><a href="#" th:onclick="|fn_pageMove(${pageCreate.beginPage-1})|">Prev</a></li>
+                <li th:each="num : ${#numbers.sequence(pageCreate.beginPage, pageCreate.endPage)}"
+                    th:class="${pageCreate.pageVO.pageNum} == ${num} ? 'cur' : ''">
+                    <a href="#" th:text="${num}"
+                       th:onclick="|fn_pageMove(${num},${pageCreate.pageVO.pageNum})|"></a>
+                </li>
+                <li th:if="${pageCreate.next}"><a href="#" th:onclick="|fn_pageMove(${pageCreate.endPage+1})|">next</a></li>
+            </ul>
+
+        </div>
+        <form id="frm1" th:action="@{|/member/${session.loginMember.member_pk}|}" method="post" th:object="${pageVO}">
+            <input type="hidden" name="countPerPage" th:value="${pageCreate.pageVO.countPerPage}"/>
+            <input type="hidden" name="pageNum" th:value="${pageCreate.pageVO.pageNum}"/>
+            <input type="hidden" name="keyword" th:value="${pageCreate.pageVO.keyword}"/>
+            <input type="hidden" name="searchField" th:value="${pageCreate.pageVO.searchField}"/>
+        </form>
+    </div>
+</div>
+</body>
+</html>

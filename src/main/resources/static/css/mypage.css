@@ -1,0 +1,119 @@
+ #main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 1000px;
+    height: 800px;
+    margin: 40px;
+    border: 1px solid #A841DB;
+    border-radius: 5px;
+    background-color: white;
+}
+#homeLink { margin-top : 40px; }
+
+#homeLink > a {
+    text-decoration: none;
+    font-size : 30px;
+    font-weight : bold;
+    cursor : pointer;
+    color : #A841DB;
+}
+
+#searchFrm {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top : 30px;
+    width: 100%;
+}
+
+#searchFrm > select,input {
+    padding: 5px 5px;
+    border : 1px solid #A841DB;
+    border-radius: 4px;
+    color: #A841DB;
+}
+
+#searchFrm > select, input:focus{
+    outline: none;
+}
+
+#fixTableWrap{
+    margin-top : 20px;
+    height: 500px;
+}
+
+table {
+    border: 2px solid #A841DB;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+th, td{
+    border: 1px solid #A841DB;
+    padding: 5px 5px;
+    color:#A841DB;
+}
+
+.modifyBtn {
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    background-color: #C15AF4;
+    color: white;
+    cursor: pointer;
+}
+
+.deleteBtn{
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    background-color: #CD2E57;
+    color: white;
+    cursor: pointer;
+}
+
+ul {
+    margin-top: 20px;
+    list-style: none;
+    padding-left: 0px;
+}
+
+li {
+    float: left;
+    border: 1px solid #A841DB;
+    border-radius: 2px;
+    padding: 3px;
+    width : 35px;
+    text-align: center;
+    margin-right: 2px;
+}
+
+li > a {
+    text-decoration: none;
+    color: #A841DB;
+}
+
+.cur{ background-color: #A841DB; }
+.cur > a { color: white; font-weight: bold; }
+
+.blue { color: rgb(56, 56, 255); font-weight: bold; }
+.red { color: #CD2E57; font-weight: bold; }
+
+.tb_input {
+    outline: none;
+    color: #A841DB;
+    border: none;
+}
+
+#searchBtn{
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    background-color: #A841DB;
+    color: white;
+    cursor: pointer;
+    width:50px;
+}

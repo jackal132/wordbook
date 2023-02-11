@@ -5,6 +5,15 @@
 
 <mapper namespace="acc.wordbook.word.mapper.WordMapper">
 
+    <sql id="search">
+        <if test="searchField == 'word'">
+            WHERE W.word LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="searchField == 'meaning'">
+            WHERE W.meaning LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+    </sql>
+
     <select id="wordDuplicateCheck" resultType="Word">
         SELECT *
           FROM words
@@ -54,5 +63,37 @@
            SET use_yn = 0
          WHERE member_pk = #{member_pk}
     </update>
+
+    <update id="updateWord" parameterType="acc.wordbook.word.dto.Word">
+        UPDATE words
+           SET word = #{word}
+             , meaning = #{meaning}
+         WHERE word_pk = #{word_pk}
+           AND member_pk = #{member_pk}
+    </update>
+
+    <select id="getMyWordTotalCount" resultType="int">
+        SELECT COUNT(W.word_pk) count
+          FROM words W
+          LEFT JOIN wrong_word WR
+            ON W.word_pk = WR.word_pk
+           AND W.member_pk = WR.member_pk
+        <include refid="search"/>
+    </select>
+
+    <select id="getMyWordList" resultType="acc.wordbook.word.dto.MyWord">
+        SELECT W.word_pk
+             , W.word
+             , W.meaning
+             , CASE WHEN W.use_yn = 0 THEN 'X' ELSE 'O' END question_yn
+             , IF(WR.word_pk, 'O', 'X') memorize_yn
+          FROM words W
+          LEFT JOIN wrong_word WR
+            ON W.word_pk = WR.word_pk
+           AND W.member_pk = WR.member_pk
+        <include refid="search"/>
+         ORDER BY W.reg_dt DESC
+         limit #{pageNum}, #{countPerPage}
+    </select>
 
 </mapper>
