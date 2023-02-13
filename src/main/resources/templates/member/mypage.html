@@ -46,7 +46,7 @@
                 <li th:each="num : ${#numbers.sequence(pageCreate.beginPage, pageCreate.endPage)}"
                     th:class="${pageCreate.pageVO.pageNum} == ${num} ? 'cur' : ''">
                     <a href="#" th:text="${num}"
-                       th:onclick="|fn_pageMove(${num},${pageCreate.pageVO.pageNum})|"></a>
+                       th:onclick="|fn_pageMove(${num})|"></a>
                 </li>
                 <li th:if="${pageCreate.next}"><a href="#" th:onclick="|fn_pageMove(${pageCreate.endPage+1})|">next</a></li>
             </ul>

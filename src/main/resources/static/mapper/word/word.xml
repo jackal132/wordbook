@@ -93,7 +93,7 @@
            AND W.member_pk = WR.member_pk
         <include refid="search"/>
          ORDER BY W.reg_dt DESC
-         limit #{pageNum}, #{countPerPage}
+         limit #{offset}, #{countPerPage}
     </select>
 
 </mapper>
