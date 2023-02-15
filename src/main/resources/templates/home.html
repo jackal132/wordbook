@@ -17,12 +17,12 @@
                             <div id="layer_content">
                                     <div>
                                         <label for="word">Word</label>
-                                        <input type="text" name="word" id="word" maxlength="50">
+                                        <input type="text" name="word" id="word" maxlength="50" autocomplete="off">
                                     </div>
 
                                     <div>
                                         <label for="meaning">Meaning</label>
-                                        <input type="text" name="meaning" id="meaning" maxlength="50">
+                                        <input type="text" name="meaning" id="meaning" maxlength="50" autocomplete="off">
                                     </div>
 
                                     <button type="submit" id="wordSaveBtn">Save</button>
@@ -47,7 +47,7 @@
                     <div id="content">
                         <div th:each="word : ${wordList}">
                             <label th:for="${'answer' + wordStat.index}" th:text="${(wordStat.index+1)  + '. ' + word.word}"></label>
-                            <input type="text" name="answer" maxlength="50">
+                            <input type="text" name="answer" maxlength="50" autocomplete="off">
                             <input type="hidden" name="hiddenMeaning" th:value="${word.meaning}">
                             <input type="hidden" name="word_pk" th:value="${word.word_pk}">
                         </div>

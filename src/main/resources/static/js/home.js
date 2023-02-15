@@ -30,7 +30,7 @@ function fn_tabClick(){
             for(let i = 0; i < data.length; i++){
                 result += "<div>";
                 result += "<label for=\"answer"+(i+1)+"\">"+ (i+1) +". "+data[i].word+"</label>";
-                result += "<input type=\"text\" name=\"answer\" maxlength=\"50\" value=\"\">";
+                result += "<input type=\"text\" name=\"answer\" maxlength=\"50\" autocomplete=\"off\"  value=\"\">";
                 result += "<input type=\"hidden\" name=\"hiddenMeaning\" value=\""+data[i].meaning+"\">";
                 result += "<input type=\"hidden\" name=\"word_pk\" value=\""+data[i].word_pk+"\">";
                 result += "</div>";
