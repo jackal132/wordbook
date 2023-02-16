@@ -85,8 +85,8 @@
         SELECT W.word_pk
              , W.word
              , W.meaning
-             , CASE WHEN W.use_yn = 0 THEN 'X' ELSE 'O' END question_yn
-             , IF(WR.word_pk, 'X', 'O') memorize_yn
+             , CASE WHEN W.use_yn = 1 OR WR.word_pk IS NOT NULL THEN 'O' ELSE 'X' END question_yn
+             , CASE WHEN W.use_yn = 1 AND WR.word_pk IS NULL THEN 'O' ELSE 'X' END memorize_yn
           FROM words W
           LEFT JOIN wrong_word WR
             ON W.word_pk = WR.word_pk
