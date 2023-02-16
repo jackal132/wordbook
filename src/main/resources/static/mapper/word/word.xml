@@ -86,7 +86,7 @@
              , W.word
              , W.meaning
              , CASE WHEN W.use_yn = 0 THEN 'X' ELSE 'O' END question_yn
-             , IF(WR.word_pk, 'O', 'X') memorize_yn
+             , IF(WR.word_pk, 'X', 'O') memorize_yn
           FROM words W
           LEFT JOIN wrong_word WR
             ON W.word_pk = WR.word_pk
