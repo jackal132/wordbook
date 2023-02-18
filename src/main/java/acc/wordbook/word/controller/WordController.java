@@ -88,8 +88,13 @@ public class WordController {
             맞추면 use_yn > 1로 변경
             틀리면 wrong 등록
         */
-        if("question".equals(mode)){
+
+        if(rightList.size() > 0){
             wordMapper.updateUseYn(rightList);
+        }
+
+        if("question".equals(mode)){
+
             for(int i = 0; i < wrongList.size(); i++){
                 long pk = (Long) wrongList.get(i);
 
@@ -99,6 +104,7 @@ public class WordController {
                 }
             }
         } else {
+
             for(int i = 0; i < rightList.size(); i++){
                 long pk = (Long) rightList.get(i);
                 wrongWordMapper.deleteWrongWord(pk, memberPk);
