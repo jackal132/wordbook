@@ -7,10 +7,16 @@
 
     <sql id="search">
         <if test="searchField == 'word'">
-            WHERE W.word LIKE CONCAT('%', #{keyword}, '%')
+            AND W.word LIKE CONCAT('%', #{keyword}, '%')
         </if>
         <if test="searchField == 'meaning'">
-            WHERE W.meaning LIKE CONCAT('%', #{keyword}, '%')
+            AND W.meaning LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="choose == 'wrong'">
+            AND WR.word_pk IS NOT NULL
+        </if>
+        <if test="choose == 'right'">
+            AND WR.word_pk IS NULL
         </if>
     </sql>
 
@@ -26,6 +32,7 @@
           FROM words
          WHERE member_pk = #{member_pk}
            AND use_yn = 0
+           AND word_pk NOT IN (SELECT word_pk FROM wrong_word)
          ORDER BY RAND() LIMIT 10
     </select>
 
@@ -78,6 +85,7 @@
           LEFT JOIN wrong_word WR
             ON W.word_pk = WR.word_pk
            AND W.member_pk = WR.member_pk
+         WHERE 1=1
         <include refid="search"/>
     </select>
 
@@ -91,6 +99,7 @@
           LEFT JOIN wrong_word WR
             ON W.word_pk = WR.word_pk
            AND W.member_pk = WR.member_pk
+         WHERE 1=1
         <include refid="search"/>
          ORDER BY W.reg_dt DESC
          limit #{offset}, #{countPerPage}

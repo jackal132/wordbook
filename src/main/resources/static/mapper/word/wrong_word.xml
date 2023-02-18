@@ -4,6 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="acc.wordbook.word.mapper.WrongWordMapper">
+
+    <select id="getWrongWordCount" parameterType="Long" resultType="int">
+        SELECT COUNT(*) count
+          FROM wrong_word
+         WHERE word_pk = #{word_pk}
+           AND member_pk = #{member_pk}
+    </select>
+
     <select id="getWrongWordList" parameterType="Long" resultType="Word">
         SELECT W.*
           FROM wrong_word WR

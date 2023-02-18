@@ -92,7 +92,11 @@ public class WordController {
             wordMapper.updateUseYn(rightList);
             for(int i = 0; i < wrongList.size(); i++){
                 long pk = (Long) wrongList.get(i);
-                wrongWordMapper.saveWrongWord(pk, memberPk);
+
+                // 이미 틀린 단어에 있는경우 추가하지 않음
+                if(wrongWordMapper.getWrongWordCount(pk, memberPk) == 0){
+                    wrongWordMapper.saveWrongWord(pk, memberPk);
+                }
             }
         } else {
             for(int i = 0; i < rightList.size(); i++){

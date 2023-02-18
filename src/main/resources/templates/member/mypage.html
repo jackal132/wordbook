@@ -7,6 +7,11 @@
         <div id="homeLink"><a href="/home">Word book</a></div>
         <form id="frm" th:action="@{|/member/${session.loginMember.member_pk}|}" method="post" th:object="${pageVO}" onsubmit="return fn_chkSearchFrm();">
             <div id="searchFrm">
+                <select name="choose" id="choose">
+                    <option value="all" th:selected="${pageCreate.pageVO.choose} == ${''}">모두</option>
+                    <option value="wrong" th:selected="${pageCreate.pageVO.choose} == ${'wrong'}">틀린단어</option>
+                    <option value="right" th:selected="${pageCreate.pageVO.choose} == ${'right'}">암기단어</option>
+                </select>
                 <select name="searchField" id="searchField">
                     <option value="word" th:selected="${pageCreate.pageVO.searchField} == ${'word'}">단어</option>
                     <option value="meaning" th:selected="${pageCreate.pageVO.searchField} == ${'meaning'}">뜻</option>
@@ -57,6 +62,7 @@
             <input type="hidden" name="pageNum" th:value="${pageCreate.pageVO.pageNum}"/>
             <input type="hidden" name="keyword" th:value="${pageCreate.pageVO.keyword}"/>
             <input type="hidden" name="searchField" th:value="${pageCreate.pageVO.searchField}"/>
+            <input type="hidden" name="choose" th:value="${pageCreate.pageVO.choose}"/>
         </form>
     </div>
 </div>

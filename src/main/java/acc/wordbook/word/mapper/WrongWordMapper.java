@@ -16,4 +16,6 @@ public interface WrongWordMapper {
     void deleteWrongWord(@RequestParam("word_pk") long word_pk, @RequestParam("member_pk") long member_pk);
 
     void resetWrongWord(@RequestParam("member_pk") long member_pk);
+
+    int getWrongWordCount(@RequestParam("word_pk") long word_pk, @RequestParam("member_pk") long member_pk);
 }

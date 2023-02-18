@@ -12,12 +12,6 @@ function fn_chkSearchFrm(){
         frm.searchField.focus();
         return false;
     }
-
-    if(isEmpty(frm.keyword.value)){
-        alert("Enter keyowrd");
-        frm.keyword.focus();
-        return false;
-    }
 }
 
 function fn_pageMove(page){

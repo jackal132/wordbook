@@ -17,6 +17,7 @@ public class PageVO {
     // 검색에 필요한 데이터
     private String keyword;
     private String searchField;
+    private String choose;
 
 
     public PageVO(){
